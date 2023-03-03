@@ -1,0 +1,22 @@
+name: Boolean Job Output
+on:
+  workflow_dispatch:
+    inputs:
+      boolean:
+        type: boolean
+        default: true
+jobs:
+  output:
+    runs-on: ubuntu-latest
+    outputs:
+      boolean: ${{ inputs.boolean }}
+  echo:
+    runs-on: ubuntu-latest
+    needs:
+      - output
+    steps:
+      - name: echo
+        run: echo "${{ needs.output.outputs.boolean }}"
+      - name: conditional
+        if: ${{ needs.output.outputs.boolean }}
+        run: 'true'
