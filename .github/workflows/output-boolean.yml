@@ -20,5 +20,5 @@ jobs:
       - name: echo
         run: echo "${{ needs.output.outputs.boolean }}"
       - name: conditional
-        if: ${{ needs.output.outputs.boolean }}
+        if: ${{ fromJson(needs.output.outputs.boolean) }}
         run: 'true'
