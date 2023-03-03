@@ -14,11 +14,9 @@ jobs:
       boolean: ${{ inputs.boolean }}
   echo:
     runs-on: ubuntu-latest
+    if: ${{ fromJson(needs.output.outputs.boolean) }}
     needs:
       - output
     steps:
       - name: echo
         run: echo "${{ needs.output.outputs.boolean }}"
-      - name: conditional
-        if: ${{ fromJson(needs.output.outputs.boolean) }}
-        run: 'true'
