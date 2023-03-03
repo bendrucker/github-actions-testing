@@ -8,6 +8,8 @@ on:
 jobs:
   output:
     runs-on: ubuntu-latest
+    steps:
+      - run: 'true'
     outputs:
       boolean: ${{ inputs.boolean }}
   echo:
